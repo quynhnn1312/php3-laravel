@@ -91,7 +91,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="shopping-cart-delete">
-                                                        <a onclick="deleteCartItem(event)" href="{{ route('delete.cart.item',$key) }}"><i class="ion ion-md-close"></i></a>
+                                                        <a onclick="deleteCartItem('{{$key}}')" href="javascript:;"><i class="ion ion-md-close"></i></a>
                                                     </div>
                                                 </li>
                                                 @endforeach

@@ -340,7 +340,7 @@ INDEX:
                     }
                 });
             });
-            
+
             // Updating the sliders
             setTimeout(function () {
                 swiperInstances.forEach(function(slider) {
@@ -518,7 +518,7 @@ INDEX:
         $("#create_account").on("change",function(){
             $(".new-account-info").slideToggle(300);
         });
-        
+
 
         // Header Custom dropdowns
         $("header .dropdown-toggle").on("click", function() {
@@ -632,7 +632,7 @@ INDEX:
                     });
                 }
             });
-            
+
             feed.run();
         }
     };
@@ -647,7 +647,7 @@ INDEX:
             $mailChimp.ajaxChimp({
                 language: 'en',
                 callback: mailChimpResponse,
-                
+
                 // ADD YOUR MAILCHIMP URL BELOW HERE!
                 url: 'https://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
             });

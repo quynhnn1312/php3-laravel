@@ -24,18 +24,23 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-    function deleteCartItem(event) {
-        event.preventDefault();
-        url = event.target.parentElement.getAttribute('href');
+    function deleteCartItem(key) {
         $.ajax({
-            url: url,
+            url: '{{ route('delete.cart.item') }}',
             type:'POST',
             data: {
-                _token : '{{ csrf_token() }}'
+                _token : '{{ csrf_token() }}',
+                key : key,
             }
         }).done(function(result) {
+            if(result.total == 0) {
+                if($('#no-shopping-cartxx')) $('#no-shopping-cartxx').show();
+                $('.container-shopping-cart').hide();
+            }
             if(result.key){
                 $(`#${result.key}`).remove();
+                if($(`#row-cart-big-${result.key}`)) $(`#row-cart-big-${result.key}`).remove();
+                if($('.total-shopping-cart')) $('.total-shopping-cart').text(result.total+"đ");
             }
             if(result.count == 0){
                 $('.shopping-cart-content').

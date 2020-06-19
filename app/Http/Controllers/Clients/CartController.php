@@ -9,7 +9,8 @@ class CartController extends FrontendController
 {
     public function listCart()
     {
-        return view('client.cart.listCart');
+        $products = \Cart::content();
+        return view('client.cart.listCart',compact('products'));
     }
 
     public function checkout()

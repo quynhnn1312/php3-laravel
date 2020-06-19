@@ -33,7 +33,8 @@ Route::namespace('Clients')->group(function (){
     // ShoppingCart
     Route::prefix('shopping')->group(function (){
         Route::post('/add/{id}', 'ShoppingCartController@addShoppingCart')->name('add.shopping.cart');
-        Route::post('/delete/{key}','ShoppingCartController@deleteCartItem')->name('delete.cart.item');
+        Route::post('/delete','ShoppingCartController@deleteCartItem')->name('delete.cart.item');
+        Route::post('/update','ShoppingCartController@updateCartItem')->name('update.cart.item');
     });
 
 

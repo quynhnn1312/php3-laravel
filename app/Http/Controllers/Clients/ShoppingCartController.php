@@ -69,10 +69,18 @@ class ShoppingCartController extends Controller
         return response()->json(['success'=>'Thêm vào giỏ hàng thành công', 'listUnstyled' => $listUnstyled, 'count' => \Cart::count()]);
     }
 
-    public function deleteCartItem(Request $request, $key)
+    public function deleteCartItem(Request $request)
     {
+        $key = $request->key;
         \Cart::remove($key);
         return response()->json(['key'=> $key,'total' => \Cart::subtotal(0.3), 'count' => \Cart::count()]);
+    }
+
+    public function updateCartItem(Request $request)
+    {
+        \Cart::update($request->key, $request->quantityUpdate);
+        $totalProductItem = number_format($request->price*$request->quantityUpdate,0,',','.');
+        return response()->json(['total' => \Cart::subtotal(0.3), 'count' => \Cart::count(), 'totalProductItem' => $totalProductItem]);
     }
 
 }

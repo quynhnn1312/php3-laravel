@@ -104,7 +104,7 @@
                                                                                 <h4 class="product-name"><a href="{{ route('get.single.product', [$pro->slug, $pro->id]) }}">{{ $pro->name }}</a></h4>
                                                                                 <p class="product-price">
                                                                                     @if($pro->sale)
-                                                                                        <span class="price-old">${{ number_format($pro->price,0,',','.') }}</span>
+                                                                                        <span class="price-old">{{ number_format($pro->price,0,',','.') }}đ</span>
                                                                                             @php($price = $pro->price * (100-$pro->sale)/100)
                                                                                         <span class="price-new">${{ number_format($price,0,',','.') }}</span>
                                                                                     @else

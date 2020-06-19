@@ -61,58 +61,50 @@
                             <div class="btn-group">
                                 <button class="btn-link dropdown-toggle icon-cart">
                                     <i class="pe-7s-shopbag"></i>
-                                    <span class="count-style">2</span>
+                                    <span class="count-style">{{ \Cart::count() }}</span>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <div class="shopping-cart-content">
-                                        <ul class="list-unstyled">
-                                            <li class="single-cart-item media">
-                                                <div class="shopping-cart-img mr-4">
-                                                    <a href="#">
-                                                        <img class="img-fluid" alt="Cart Item" src="{{ asset('assets/images/cart/cart-1.jpg')}}">
-                                                        <span class="product-quantity">1x</span>
-                                                    </a>
+                                    <div class="shopping-cart-content cart-small-header">
+                                        @if(\Cart::count() == 0)
+                                            <div class="no-cart">
+                                                <div>
+                                                    <img src="{{ asset('./images/empty_cart4fcc.png') }}" alt="">
+                                                    <p>Không có sản phẩm nào</p>
                                                 </div>
-                                                <div class="shopping-cart-title media-body">
-                                                    <h4><a href="#">Rival Field Messenger</a></h4>
-                                                    <p class="cart-price">$120.00</p>
-                                                    <div class="product-attr">
-                                                        <span>Size: S</span>
-                                                        <span>Color: Black</span>
+                                            </div>
+                                        @else
+                                            <ul class="list-unstyled" id="listUnstyled">
+                                                @foreach(Cart::content() as $key => $product)
+                                                    <li class="single-cart-item media" id="{{ $key }}">
+                                                    <div class="shopping-cart-img mr-4">
+                                                        <a href="#">
+                                                            <img class="img-fluid" alt="Cart Item" src="{{ asset('storage/'.$product->options->image)}}">
+                                                            <span class="product-quantity">{{ $product->qty}}</span>
+                                                        </a>
                                                     </div>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="ion ion-md-close"></i></a>
-                                                </div>
-                                            </li>
-                                            <li class="single-cart-item media">
-                                                <div class="shopping-cart-img mr-4">
-                                                    <a href="#">
-                                                        <img class="img-fluid" alt="Cart Item" src="{{ asset('assets/images/cart/cart-2.jpg')}}">
-                                                        <span class="product-quantity">2x</span>
-                                                    </a>
-                                                </div>
-                                                <div class="shopping-cart-title media-body">
-                                                    <h4><a href="#">Fusion Backpack</a></h4>
-                                                    <p class="cart-price">$200.00</p>
-                                                    <div class="product-attr">
-                                                        <span>Color: White</span>
-                                                        <span>Accessories: Yes</span>
+                                                    <div class="shopping-cart-title media-body">
+                                                        <h4><a href="#">{{ $product->name }}</a></h4>
+                                                        <p class="cart-price">{{ number_format($product->price,0,',','.') }}đ</p>
+                                                        <div class="product-attr">
+                                                            <span>Color: White</span>
+                                                            <span>Accessories: Yes</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="ion ion-md-close"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="shopping-cart-total">
-                                            <h4>Sub-Total : <span>$320.00</span></h4>
-                                            <h4>Total : <span>$320.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-btn">
-                                            <a class="default-btn" href="{{ route('get.list.cart') }}">view cart</a>
-                                            <a class="default-btn" href="{{ route('get.checkout') }}">checkout</a>
-                                        </div>
+                                                    <div class="shopping-cart-delete">
+                                                        <a onclick="deleteCartItem(event)" href="{{ route('delete.cart.item',$key) }}"><i class="ion ion-md-close"></i></a>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="shopping-cart-total">
+                                                <h4>Sub-Total : <span class="totalShoppingCart">{{ Cart::subtotal(0.3) }}đ</span></h4>
+                                                <h4>Total : <span class="totalShoppingCart">{{ Cart::subtotal(0.3) }}đ</span></h4>
+                                            </div>
+                                            <div class="shopping-cart-btn">
+                                                <a class="default-btn" href="{{ route('get.list.cart') }}">view cart</a>
+                                                <a class="default-btn" href="{{ route('get.checkout') }}">checkout</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -151,9 +143,12 @@
                     </li>
                     <li><a href="{{ route('get.shop') }}"><span>Shop</span></a>
                         <ul>
-                            <li><a href="#">Woman</a></li>
-                            <li><a href="#">Man</a></li>
-                            <li><a href="{{ route('get.single.product') }}">Single - Product</a></li>
+                            @if(isset($categories))
+                                @foreach($categories as $cate)
+                                    <li><a href="{{ route('get.list.shop',[$cate->slug, $cate->id]) }}">{{ $cate->cate_name }}</a></li>
+                                @endforeach
+                            @endif
+{{--                            <li><a href="{{ route('get.single.product') }}">Single - Product</a></li>--}}
                         </ul>
                     </li>
                     <li><a href="{{ route('get.blog') }}"><span>Blog Pages</span></a>

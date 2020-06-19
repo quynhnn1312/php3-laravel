@@ -5,8 +5,11 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12">
                     <nav class="breadcrumb">
-                        <a class="breadcrumb-item" href="index.html">Home</a>
-                        <span class="breadcrumb-item active">Shop</span>
+                        <a class="breadcrumb-item" href="{{ route('get.home') }}">Home</a>
+                        <span class="breadcrumb-item">Shop</span>
+                        @if(isset($category->cate_name))
+                            <span class="breadcrumb-item active">{{ $category->cate_name }}</span>
+                        @endif
                     </nav>
                 </div>
             </div> <!-- end of row -->
@@ -23,7 +26,7 @@
                             <div class="shop-wrapper">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12">
-                                        <h1>Shop</h1>
+                                        <h1>{{ isset($category->cate_name) ? $category->cate_name : 'Shop' }}</h1>
                                         <div class="shop-toolbar">
                                             <div class="toolbar-inner">
                                                 <div class="product-view-mode">
@@ -60,387 +63,60 @@
                                             <div class="tab-content">
                                                 <div id="grid" class="tab-pane anime-tab active show" role="tabpanel">
                                                     <div class="row">
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-sale">-20%</div>
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-1.jpg" alt="Compete Track Tote" title="Compete Track Tote">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Studio Design</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
+                                                        @if($products)
+                                                            @foreach($products as $pro)
+                                                                <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
+                                                                    <div class="product-thumb">
+                                                                        <div class="product-inner">
+                                                                            <div class="product-image">
+                                                                                @if($pro->sale)
+                                                                                    <div class="label-product label-sale">-{{ $pro->sale }}%</div>
+                                                                                @endif
+                                                                                <div class="label-product label-new">New</div>
+                                                                                <a href="{{ route('get.single.product', [$pro->slug, $pro->id]) }}">
+                                                                                    <img src="{{ asset('storage/'.$pro->image) }}" alt="Compete Track Tote" title="Compete Track Tote">
+                                                                                </a>
+                                                                                <div class="action-links">
+                                                                                    <a class="action-btn btn-cart" onclick="addToCart(event,{{$pro->id}})" href="{{ route('add.shopping.cart',$pro->id) }}" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
+                                                                                    <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
+                                                                                    <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
+                                                                                    <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Compete Track Tote</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-old">$54.65</span>
-                                                                            <span class="price-new">$43.72</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
+                                                                            </div> <!-- end of product-image -->
 
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-9.jpg" alt="Wayfarer Messenger Bag" title="Wayfarer Messenger Bag">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Studio Design</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                    </ul>
+                                                                            <div class="product-caption">
+                                                                                <div class="product-meta d-flex justify-content-between align-items-center">
+                                                                                    <div class="product-manufacturer">
+                                                                                        <a href="#">Studio Design</a>
+                                                                                    </div>
+                                                                                    <div class="product-ratings">
+                                                                                        <div class="rating-box">
+                                                                                            <ul class="rating d-flex">
+                                                                                                <li><i class="ion ion-md-star-outline"></i></li>
+                                                                                                <li><i class="ion ion-md-star-outline"></i></li>
+                                                                                                <li><i class="ion ion-md-star-outline"></i></li>
+                                                                                                <li><i class="ion ion-md-star-outline"></i></li>
+                                                                                                <li><i class="ion ion-md-star-outline disabled"></i></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Wayfarer Messenger Bag</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$65.40</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-2.jpg" alt="Fusion Backpack" title="Fusion Backpack">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Fusion Backpack</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$55.70</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-sale">-7%</div>
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-10.jpg" alt="Strive Shoulder Pack" title="Strive Shoulder Pack">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Strive Shoulder Pack</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-old">$76.40</span>
-                                                                            <span class="price-new">$71.05</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-3.jpg" alt="Rival Field Messenger 6" title="Rival Field Messenger 6">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Rival Field Messenger 6</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$54.40</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-11.jpg" alt="Rival Field Messenger" title="Rival Field Messenger">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Rival Field Messenger</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$54.50</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-4.jpg" alt="Rival Field Messenger" title="Rival Field Messenger">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Rival Field Messenger</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$67.50</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-12.jpg" alt="Crown Summit Backpack" title="Crown Summit Backpack">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Crown Summit Backpack</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$78.90</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
-
-                                                        <article class="product-layout col-6 col-sm-6 col-md-4 col-lg-4">
-                                                            <div class="product-thumb">
-                                                                <div class="product-inner">
-                                                                    <div class="product-image">
-                                                                        <div class="label-product label-new">New</div>
-                                                                        <a href="single-product.html">
-                                                                            <img src="assets/images/products/new/product-5.jpg" alt="Crown Summit Backpack" title="Crown Summit Backpack">
-                                                                        </a>
-                                                                        <div class="action-links">
-                                                                            <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
-                                                                            <a class="action-btn btn-wishlist" href="#" title="Add to Wishlist"><i class="pe-7s-like"></i></a>
-                                                                            <a class="action-btn btn-compare" href="#" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Quick View"><i class="pe-7s-search"></i></a>
-                                                                        </div>
-                                                                    </div> <!-- end of product-image -->
-
-                                                                    <div class="product-caption">
-                                                                        <div class="product-meta d-flex justify-content-between align-items-center">
-                                                                            <div class="product-manufacturer">
-                                                                                <a href="#">Graphic Corner</a>
-                                                                            </div>
-                                                                            <div class="product-ratings">
-                                                                                <div class="rating-box">
-                                                                                    <ul class="rating d-flex">
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline"></i></li>
-                                                                                        <li><i class="ion ion-md-star-outline disabled"></i></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h4 class="product-name"><a href="single-product.html">Crown Summit Backpack</a></h4>
-                                                                        <p class="product-price">
-                                                                            <span class="price-new">$78.90</span>
-                                                                        </p>
-                                                                    </div><!-- end of product-caption -->
-                                                                </div><!-- end of product-inner -->
-                                                            </div><!-- end of product-thumb -->
-                                                        </article> <!-- end of product-layout -->
+                                                                                <h4 class="product-name"><a href="{{ route('get.single.product', [$pro->slug, $pro->id]) }}">{{ $pro->name }}</a></h4>
+                                                                                <p class="product-price">
+                                                                                    @if($pro->sale)
+                                                                                        <span class="price-old">${{ number_format($pro->price,0,',','.') }}</span>
+                                                                                            @php($price = $pro->price * (100-$pro->sale)/100)
+                                                                                        <span class="price-new">${{ number_format($price,0,',','.') }}</span>
+                                                                                    @else
+                                                                                        <span class="price-new">${{ number_format($pro->price,0,',','.') }}</span>
+                                                                                    @endif
+                                                                                </p>
+                                                                            </div><!-- end of product-caption -->
+                                                                        </div><!-- end of product-inner -->
+                                                                    </div><!-- end of product-thumb -->
+                                                                </article> <!-- end of product-layout -->
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div id="list" class="tab-pane anime-tab" role="tabpanel">
@@ -453,7 +129,7 @@
                                                                             <div class="label-product label-sale">-20%</div>
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-1.jpg" title="Compete Track Tote" alt="Compete Track Tote">
+                                                                                <img src="{{ asset('assets/images/products/new/product-1.jpg')}}" title="Compete Track Tote" alt="Compete Track Tote">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -499,7 +175,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-9.jpg" title="Wayfarer Messenger Bag" alt="Wayfarer Messenger Bag">
+                                                                                <img src="{{ asset('assets/images/products/new/product-9.jpg')}}" title="Wayfarer Messenger Bag" alt="Wayfarer Messenger Bag">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -544,7 +220,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-2.jpg" title="Fusion Backpack" alt="Fusion Backpack">
+                                                                                <img src="{{ asset('assets/images/products/new/product-2.jpg')}}" title="Fusion Backpack" alt="Fusion Backpack">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -590,7 +266,7 @@
                                                                             <div class="label-product label-sale">-7%</div>
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-10.jpg" title="Strive Shoulder Pack" alt="Strive Shoulder Pack">
+                                                                                <img src="{{ asset('assets/images/products/new/product-10.jpg')}}" title="Strive Shoulder Pack" alt="Strive Shoulder Pack">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -636,7 +312,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-3.jpg" title="Rival Field Messenger 6" alt="Rival Field Messenger 6">
+                                                                                <img src="{{ asset('assets/images/products/new/product-3.jpg')}}" title="Rival Field Messenger 6" alt="Rival Field Messenger 6">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -681,7 +357,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-11.jpg" title="Rival Field Messenger" alt="Rival Field Messenger">
+                                                                                <img src="{{ asset('assets/images/products/new/product-11.jpg')}}" title="Rival Field Messenger" alt="Rival Field Messenger">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -726,7 +402,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-4.jpg" title="Rival Field Messenger" alt="Rival Field Messenger">
+                                                                                <img src="{{ asset('assets/images/products/new/product-4.jpg')}}" title="Rival Field Messenger" alt="Rival Field Messenger">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -771,7 +447,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-12.jpg" title="Crown Summit Backpack" alt="Crown Summit Backpack">
+                                                                                <img src="{{ asset('assets/images/products/new/product-12.jpg')}}" title="Crown Summit Backpack" alt="Crown Summit Backpack">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -816,7 +492,7 @@
                                                                         <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
                                                                             <div class="label-product label-new">New</div>
                                                                             <a href="single-product.html">
-                                                                                <img src="assets/images/products/new/product-5.jpg" title="Crown Summit Backpack" alt="Crown Summit Backpack">
+                                                                                <img src="{{ asset('assets/images/products/new/product-5.jpg')}}" title="Crown Summit Backpack" alt="Crown Summit Backpack">
                                                                             </a>
                                                                             <div class="action-links">
                                                                                 <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>

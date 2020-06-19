@@ -45,19 +45,19 @@
         }
     })
     @if(Session::has('message'))
-        Toast.fire({
+    Toast.fire({
         icon: 'success',
         title: "{{ Session::get('message') }}",
         position: 'top-end'
-        })
-        {{ Session::put('message', null) }}
+    })
+    {{ Session::put('message', null) }}
     @endif
-        @if(Session::has('error'))
-        Toast.fire({
-            icon: 'error',
-            title: "{{ Session::get('error') }}",
-            position: 'top-end'
-        })
-        {{ Session::put('error', null) }}
+    @if(Session::has('error'))
+    Toast.fire({
+        icon: 'error',
+        title: "{{ Session::get('error') }}",
+        position: 'top-end'
+    })
+    {{ Session::put('error', null) }}
     @endif
 </script>

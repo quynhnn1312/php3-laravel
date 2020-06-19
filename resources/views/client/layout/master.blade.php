@@ -4,6 +4,25 @@
 <!-- Mirrored from preview.hasthemes.com/pebona-v1/pebona/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Apr 2020 15:09:12 GMT -->
 <head>
     @include('client.layout._share.head')
+    <style>
+        body.swal2-toast-shown .swal2-container.swal2-top-end, body.swal2-toast-shown .swal2-container.swal2-top-right{
+            z-index: 10000;
+        }
+        .no-cart{
+            height: 300px;
+            width: 100%;
+            display: flex;
+        }
+        .no-cart div{
+            margin: auto;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .no-cart div img{
+            width: 70%;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -322,7 +341,7 @@
 ============================================ -->
 
 @include('client.layout._share.script')
-
+@yield('js')
 </body>
 
 <!-- Mirrored from preview.hasthemes.com/pebona-v1/pebona/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Apr 2020 15:09:31 GMT -->

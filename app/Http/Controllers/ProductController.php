@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\RequestUpdateProduct;
 use Illuminate\Http\Request;
 use App\Product;
 use Session;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -28,7 +30,7 @@ class ProductController extends Controller
                      ->withPath("?keyword=$keyCate");
         }
         $products = $products->orderByDesc('id')
-                             ->paginate(10);
+                             ->paginate(5);
         $cates = Category::all();
         return view('product.index', compact('cates','products'));
     }
@@ -69,7 +71,7 @@ class ProductController extends Controller
         return view('product.edit', $viewData);
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(RequestUpdateProduct $request, $id)
     {
         $this->insertOrUpdate($request, $id);
 
@@ -85,6 +87,7 @@ class ProductController extends Controller
             if(empty($products)) return redirect()->back()->with('error', 'Sản phẩm không tồn tại !');
         }
         $products->name = $request->name;
+        $products->slug = Str::slug($request->name,'-');
         $products->cate_id = $request->cate_id;
         $products->price = $request->price;
         $products->sale = $request->sale;
@@ -101,14 +104,27 @@ class ProductController extends Controller
         $products->save();
     }
 
-    public function destroy($id)
+    public function action($action, $id)
     {
-        $product = Product::find($id);
-        if(empty($product))
+        if($action)
         {
-            return redirect()->back()->with('error', 'Sản phẩm không tồn tại !');
+            $product = Product::find($id);
+            if(empty($product))
+            {
+                return redirect()->back()->with('error', 'Sản phẩm không tồn tại !');
+            }
+            switch ($action)
+            {
+                case 'delete':
+                    $product->delete();
+                    return redirect()->back()->with('message', 'Xóa thành công !');
+                    break;
+                case 'status':
+                    $product->status = $product->status ? 0 : 1;
+                    $product->save();
+                    return redirect()->back()->with('message', 'Cập nhật thành công !');
+                    break;
+            }
         }
-        $product->delete();
-        return redirect()->back()->with('message', 'Xóa sản phẩm thành công !');
     }
 }

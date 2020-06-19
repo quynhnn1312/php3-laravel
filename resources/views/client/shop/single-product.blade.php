@@ -30,49 +30,55 @@
                                                     <div class="product-full-image main-slider image-popup swiper-container-fade swiper-container-horizontal" data-pswp-uid="1">
 
                                                         <!-- Slides -->
-                                                        <div class="swiper-wrapper" style="transition-duration: 0ms;"><figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 440px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-1.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-1.jpg" alt="Product Image">
+                                                        <div class="swiper-wrapper" style="transition-duration: 0ms;">
+                                                            <figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 440px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="width: 440px; opacity: 1; transform: translate3d(-440px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-2.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-2.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="width: 440px; opacity: 1; transform: translate3d(-440px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="width: 440px; opacity: 1; transform: translate3d(-880px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-3.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-3.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="width: 440px; opacity: 1; transform: translate3d(-880px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="width: 440px; opacity: 1; transform: translate3d(-1320px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-4.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-4.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="width: 440px; opacity: 1; transform: translate3d(-1320px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="width: 440px; opacity: 1; transform: translate3d(-1760px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-5.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-5.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="width: 440px; opacity: 1; transform: translate3d(-1760px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="5" style="width: 440px; opacity: 1; transform: translate3d(-2200px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-6.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-6.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="5" style="width: 440px; opacity: 1; transform: translate3d(-2200px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -80,8 +86,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 440px; opacity: 1; transform: translate3d(-2640px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-1.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-1.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -89,8 +95,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="width: 440px; opacity: 0; transform: translate3d(-3080px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-2.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-2.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -98,8 +104,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide" data-swiper-slide-index="2" style="width: 440px; opacity: 0; transform: translate3d(-3520px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-3.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-3.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -107,8 +113,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide" data-swiper-slide-index="3" style="width: 440px; opacity: 0; transform: translate3d(-3960px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-4.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-4.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -116,8 +122,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide" data-swiper-slide-index="4" style="width: 440px; opacity: 0; transform: translate3d(-4400px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-5.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-5.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -125,8 +131,8 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="5" style="width: 440px; opacity: 0; transform: translate3d(-4840px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-6.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-6.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
@@ -134,54 +140,60 @@
                                                                 </figcaption>
                                                             </figure>
                                                             <figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 440px; opacity: 0; transform: translate3d(-5280px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-1.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-1.jpg" alt="Product Image">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="width: 440px; opacity: 0; transform: translate3d(-5720px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-2.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-2.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="width: 440px; opacity: 0; transform: translate3d(-5720px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="width: 440px; opacity: 0; transform: translate3d(-6160px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-3.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-3.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="width: 440px; opacity: 0; transform: translate3d(-6160px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="width: 440px; opacity: 0; transform: translate3d(-6600px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-4.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-4.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="width: 440px; opacity: 0; transform: translate3d(-6600px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="width: 440px; opacity: 0; transform: translate3d(-7040px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-5.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-5.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="width: 440px; opacity: 0; transform: translate3d(-7040px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure><figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="5" style="width: 440px; opacity: 0; transform: translate3d(-7480px, 0px, 0px); transition-duration: 0ms;">
-                                                                <a href="assets/images/products/single/product-6.jpg" data-size="600x600">
-                                                                    <img src="assets/images/products/single/product-6.jpg" alt="Product Image">
+                                                            </figure>
+                                                            <figure class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="5" style="width: 440px; opacity: 0; transform: translate3d(-7480px, 0px, 0px); transition-duration: 0ms;">
+                                                                <a href="{{ asset('storage/'.$single_product->image) }}" data-size="600x600">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Image">
                                                                     <div class="image-overlay"><i class="fa fa-search-plus"></i></div>
                                                                 </a>
                                                                 <figcaption class="visually-hidden">
                                                                     <span>Product Image</span>
                                                                 </figcaption>
-                                                            </figure></div>
+                                                            </figure>
+                                                        </div>
                                                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div> <!-- end of product-full-image -->
                                                 </div>
 
@@ -190,48 +202,48 @@
                                                         <div class="nav-slider swiper-container-vertical" style="cursor: grab;">
                                                             <!-- Slides -->
                                                             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -500px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-1.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-2.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-3.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-4.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-5.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="5" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-6.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-1.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-2.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide" data-swiper-slide-index="2" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-3.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide" data-swiper-slide-index="3" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-4.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide" data-swiper-slide-index="4" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-5.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide swiper-slide-duplicate-prev" data-swiper-slide-index="5" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-6.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div>
                                                                 <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-1.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" data-swiper-slide-index="1" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-2.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="2" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-3.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="3" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-4.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="4" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-5.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div><div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="5" style="height: 85px; margin-bottom: 15px;">
-                                                                    <img src="assets/images/products/single/product-thumb-6.jpg" alt="Product Thumbnail Image">
+                                                                    <img src="{{ asset('storage/'.$single_product->image) }}" alt="Product Thumbnail Image">
                                                                 </div></div>
 
                                                             <!-- Navigation -->
@@ -352,7 +364,7 @@
                                                 <div class="tab-pane fade" id="tab_product_details" role="tabpanel" aria-labelledby="nav_product_details">
                                                     <div class="product-tab-details d-flex justify-content-center align-content-center">
                                                         <div class="product-brand align-self-center mr-md-5">
-                                                            <img src="assets/images/products/product-brand.png" alt="Brand Icon">
+                                                            <img src="{{ asset('storage/'.$single_product->image) }}" alt="Brand Icon">
                                                         </div>
                                                         <div class="product-meta">
                                                             <ul class="list-unstyled">
@@ -480,7 +492,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-10.jpg" alt="Fusion Backpack" title="Fusion Backpack">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Fusion Backpack" title="Fusion Backpack">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -521,7 +533,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-11.jpg" alt="Rival Field Messenger 6" title="Rival Field Messenger 6">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Rival Field Messenger 6" title="Rival Field Messenger 6">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -563,7 +575,7 @@
                                                     <div class="label-product label-sale">-7%</div>
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-12.jpg" alt="Strive Shoulder Pack" title="Strive Shoulder Pack">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Strive Shoulder Pack" title="Strive Shoulder Pack">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -605,7 +617,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-13.jpg" alt="Wayfarer Messenger Bag" title="Wayfarer Messenger Bag">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Wayfarer Messenger Bag" title="Wayfarer Messenger Bag">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -646,7 +658,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-1.jpg" alt="Rival Field Messenger" title="Rival Field Messenger">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Rival Field Messenger" title="Rival Field Messenger">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -687,7 +699,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-2.jpg" alt="Crown Summit Backpack" title="Crown Summit Backpack">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Crown Summit Backpack" title="Crown Summit Backpack">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>
@@ -728,7 +740,7 @@
                                                 <div class="product-image">
                                                     <div class="label-product label-new">New</div>
                                                     <a href="single-product.html">
-                                                        <img src="assets/images/products/new/product-10.jpg" alt="Rival Field Messenger" title="Rival Field Messenger">
+                                                        <img src="{{ asset('storage/'.$single_product->image) }}" alt="Rival Field Messenger" title="Rival Field Messenger">
                                                     </a>
                                                     <div class="action-links">
                                                         <a class="action-btn btn-cart" href="#" title="Add to Cart"><i class="pe-7s-shopbag"></i></a>

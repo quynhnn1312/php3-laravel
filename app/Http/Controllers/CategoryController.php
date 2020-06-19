@@ -35,7 +35,7 @@ class CategoryController extends Controller
         $request->has('show_menu') ? $data['show_menu'] = 1 : $data['show_menu'] = -1;
         $data['slug'] = Str::slug($request->cate_name, '-');
         Category::insert($data);
-        return redirect()->back()->with('message', 'Thêm mới danh mục thành công !');
+        return redirect()->route('get.list.category')->with('message', 'Thêm mới danh mục thành công !');
     }
 
     public function edit($id)

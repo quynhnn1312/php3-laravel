@@ -99,7 +99,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">{{ isset($category) ? 'Cập nhật' : 'Thêm mới' }}</button>
+            <button type="submit" class="btn btn-primary">{{ isset($product) ? 'Cập nhật' : 'Thêm mới' }}</button>
             <button type="reset" class="btn btn-danger">Reset</button>
         </div>
     </form>

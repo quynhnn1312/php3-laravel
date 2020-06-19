@@ -52,6 +52,7 @@
                         <th scope="col">Hình ảnh</th>
                         <th scope="col">Giá</th>
                         <th scope="col">Số lượng</th>
+                        <th scope="col">Trạng thái</th>
                         <th scope="col">
                             Thao tác
                         </th>
@@ -74,8 +75,15 @@
                                     {{ $product->count }}
                                 </td>
                                 <td>
+                                    <a href="{{ route('get.action.product',['status',$product->id]) }}"
+                                       class="badge {{ $product->getStatus($product->status)['class'] }}">
+                                        <i class="fas {{ $product->getStatus($product->status)['icon'] }}"></i>
+                                        {{ $product->getStatus($product->status)['name'] }}
+                                    </a>
+                                </td>
+                                <td>
                                     <a class="btn btn-sm btn-outline-info" href="{{ route('get.edit.product',$product->id) }}"><i class="fas fa-pencil-alt"></i> Cập nhật</a>
-                                    <a class="btn btn-sm btn-outline-info" onclick="deleteCate({{ $product->id }})" href="javascript:void(0)"><i class="far fa-trash-alt"></i> Xóa</a>
+                                    <a class="btn btn-sm btn-outline-info" onclick="deleteCate(event)" href="{{ route('get.action.product', ['delete',$product->id]) }}"><i class="far fa-trash-alt"></i> Xóa</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -95,7 +103,9 @@
 
 @section('js')
     <script type="text/javascript">
-        function deleteCate(id) {
+        function deleteCate(event) {
+            event.preventDefault();
+            var url = event.target.getAttribute("href");
             Swal.fire({
                 title: 'Bạn có chắc muốn xóa?',
                 text: "Vui lòng chọn ok hoặc cancel !",
@@ -106,7 +116,7 @@
                 confirmButtonText: 'Ok'
             }).then((result) => {
                 if (result.value) {
-                    window.location.href = `products/delete/${id}`
+                    window.location.href = url
                 }
             })
         }

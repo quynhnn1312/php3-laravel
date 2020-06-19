@@ -1,3 +1,14 @@
+<style>
+    .form-group{
+        position: relative;
+    }
+    .form-group span.eye-password{
+        position: absolute;
+        top: 40px;
+        right: 15px;
+        cursor: pointer;
+    }
+</style>
 <div class="col-md-12">
     <!-- jquery validation -->
     <div class="card card-primary">
@@ -36,17 +47,19 @@
                         @isset($user)
                             <div class="form-group">
                                 <label for="email">Mật khẩu cũ:</label>
-                                <input type="password" name="old_password" placeholder="Nhập mật khẩu mới" value="{{ old('password') }}" class="form-control @error('old_password') is-invalid @enderror">
-                                @if($errors->has('password'))
+                                <input data="1" type="password" name="old_password" placeholder="Nhập mật khẩu cũ" value="{{ old('password') }}" class="form-control @error('old_password') is-invalid @enderror">
+                                <span onclick="eyePassword(event)" class="eye-password"><i class="fas fa-eye"></i></span>
+                                @if(Session::has('error-old_password'))
                                     <span class="error-text">
-                                        {{$errors->first('password')}}
+                                        {{Session::get('error-old_password')}}
                                     </span>
                                 @endif
                             </div>
                         @endif
                         <div class="form-group">
                             <label for="email">Mật khẩu mới:</label>
-                            <input type="password" name="password" placeholder="Nhập mật khẩu" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror">
+                            <input type="password" name="password" placeholder="Nhập mật khẩu mới" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror">
+                            <span onclick="eyePassword(event)" class="eye-password"><i class="fas fa-eye"></i></span>
                             @if($errors->has('password'))
                                 <span class="error-text">
                                     {{$errors->first('password')}}
@@ -56,6 +69,7 @@
                         <div class="form-group">
                             <label for="email">Nhập lại Mật khẩu:</label>
                             <input type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation" value="{{ old('confirm-password') }}" class="form-control @error('confirm-password') is-invalid @enderror">
+                            <span onclick="eyePassword(event)" class="eye-password"><i class="fas fa-eye"></i></span>
                         </div>
                         <div class="form-group">
                             <label for="name">Số điện thoại:</label>
@@ -120,3 +134,17 @@
     </div>
     <!-- /.card -->
 </div>
+@section('js')
+    <script>
+        function eyePassword (event) {
+            let type =event.target.parentElement.parentElement.querySelector('input');
+            if( type.getAttribute('type') == 'password'){
+                type.setAttribute('type','text');
+                console.log(event.target.setAttribute('class','fas fa-eye-slash'))
+            }else{
+                type.setAttribute('type','password');
+                console.log(event.target.setAttribute('class','fas fa-eye'))
+            }
+        }
+    </script>
+@stop

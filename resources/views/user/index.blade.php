@@ -23,7 +23,7 @@
                 <form class="form-inline" method="get" action="">
                     <div class="form-group">
                         <input type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
-                    </div>
+                    </div> &nbsp;
                     <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                 </form>
                 <div>
@@ -77,7 +77,7 @@
                 </table>
                 <hr>
                 <div class="paginate d-flex justify-content-center">
-{{--                    {{ isset($products) ? $products->links() : '' }}--}}
+                    {{ isset($users) ? $users->links() : '' }}
                 </div>
             </div>
             <!-- /.card-body -->

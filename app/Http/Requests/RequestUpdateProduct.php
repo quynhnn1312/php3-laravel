@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class RequestUpdateProduct extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,6 @@ class ProductRequest extends FormRequest
             'count' => 'required',
             'short_desc' => 'required',
             'cate_id' => 'required',
-            'image' => 'required|file',
         ];
     }
 
@@ -42,8 +41,6 @@ class ProductRequest extends FormRequest
             'count.required' => 'Số lượng phẩm không được để trống !',
             'short_desc.required' => 'Trường này không để trống !',
             'cate_id.required' => 'Trường này không để trống !',
-            'image.required' => 'Trường này không để trống !',
-            'image.file' => 'Trường này nhập vào phải là file !',
         ];
     }
 }

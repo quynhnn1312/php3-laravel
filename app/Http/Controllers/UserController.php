@@ -6,12 +6,15 @@ use App\Http\Requests\RequestUpdateUser;
 use App\Http\Requests\RequestUser;
 use App\User;
 use Illuminate\Http\Request;
+use Session;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $keyword = $request->keyword;
+        $users = User::paginate(5)->withPath("?keyword=$keyword");
+        if($keyword) $users = User::where('name','like','%'.$keyword.'%')->paginate(5)->withPath("?keyword=$keyword");
         return view('user.index', compact('users'));
     }
 
@@ -31,7 +34,7 @@ class UserController extends Controller
             $data['avatar'] = $request->avatar->storeAs('users', $filename, 'public');
         }else
         {
-            $data['avatar'] = 'storage/users/user.png';
+            $data['avatar'] = 'users/user.png';
         }
         User::insert($data);
         return redirect()->route('get.list.user')->with('message', 'Thêm mới thành công !');
@@ -53,6 +56,22 @@ class UserController extends Controller
          if(empty($user))
          {
              return redirect()->back()->with('error', 'Tài khoản không tồn tại !');
+         }
+         if($request->old_password)
+         {
+             if (!\Hash::check($request->old_password, $user->password))
+             {
+                 return redirect()->back()->with('error-old_password', 'Mật khẩu cũ không chính xác');
+             }
+             if($request->password)
+             {
+                 $request->validate([
+                    'password' => 'confirmed'
+                 ],[
+                     'password.confirmed' => 'Xác nhận mật khẩu không đúng !',
+                 ]);
+                 $user->password = bcrypt($request->password);
+             }
          }
          $user->name = $request->name;
          $user->email = $request->email;

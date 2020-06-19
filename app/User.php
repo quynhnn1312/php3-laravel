@@ -9,6 +9,8 @@ use Illuminate\Support\Arr;
 
 class User extends Authenticatable
 {
+    protected $table = 'users';
+
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;
 

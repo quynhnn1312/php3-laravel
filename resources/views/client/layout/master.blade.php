@@ -22,6 +22,9 @@
             width: 70%;
             margin-bottom: 20px;
         }
+        .error-text{
+            color: red;
+        }
     </style>
 </head>
 

@@ -28,14 +28,21 @@ Route::namespace('Clients')->group(function (){
     // Trang vớ vẩn
     Route::get('/about','AboutController@index')->name('get.about');
     Route::get('/contact','ContactController@index')->name('get.contact');
-    Route::get('/cart','CartController@listCart')->name('get.list.cart');
-    Route::get('/checkout','CartController@checkout')->name('get.checkout');
     // ShoppingCart
-    Route::prefix('shopping')->group(function (){
+    Route::prefix('cart')->group(function (){
+        Route::get('/','ShoppingCartController@listCart')->name('get.list.cart');
         Route::post('/add/{id}', 'ShoppingCartController@addShoppingCart')->name('add.shopping.cart');
         Route::post('/delete','ShoppingCartController@deleteCartItem')->name('delete.cart.item');
         Route::post('/update','ShoppingCartController@updateCartItem')->name('update.cart.item');
     });
+    // CheckOut
+    Route::get('/checkout','ShoppingCartController@checkout')->name('get.checkout');
+    Route::post('/thank-you','ShoppingCartController@saveInfoShoppingCart')->name('post.checkout');
+    // send mail
+    Route::get('/send-mail', function () {
+            return  view('client.mail');
+    });
+
 
 
 

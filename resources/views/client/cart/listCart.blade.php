@@ -223,8 +223,8 @@
                                             </div>
 
                                             <div class="cart-button-wrapper d-flex justify-content-between mt-4">
-                                                <a href="shop-grid.html" class="btn btn-secondary dark">Continue Shopping</a>
-                                                <a href="checkout.html" class="btn btn-secondary dark align-self-end">Checkout</a>
+                                                <a href="{{ route('get.shop') }}" class="btn btn-secondary dark">Continue Shopping</a>
+                                                <a href="{{ route('get.checkout') }}" class="btn btn-secondary dark align-self-end">Checkout</a>
                                             </div>
                                         </div>
                                     </div>

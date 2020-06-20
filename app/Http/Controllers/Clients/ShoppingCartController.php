@@ -3,11 +3,28 @@
 namespace App\Http\Controllers\Clients;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestCheckout;
+use App\Order;
+use App\Transaction;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Mail;
 
 class ShoppingCartController extends Controller
 {
+    public function listCart()
+    {
+        $products = \Cart::content();
+        return view('client.cart.listCart',compact('products'));
+    }
+
+    public function checkout()
+    {
+        $products = \Cart::content();
+        return view('client.cart.checkout',compact('products'));
+    }
     public function addShoppingCart (Request $request, $id) {
         $product = Product::select('name','id','price','image','sale','count')->find($id);
         if(!$product) return response()->json(['error' =>'Thêm vào giỏ hàng không thành công']);
@@ -83,4 +100,57 @@ class ShoppingCartController extends Controller
         return response()->json(['total' => \Cart::subtotal(0.3), 'count' => \Cart::count(), 'totalProductItem' => $totalProductItem]);
     }
 
+    public function saveInfoShoppingCart(RequestCheckout $request)
+    {
+        $totalMoney = str_replace(',','', \Cart::subtotal(0,3));
+        $countProduct = \Cart::count();
+        $requestData = [
+            'user_id' => isset(Auth::user()->id) ? Auth::user()->id : 0,
+            'total' => (int)$totalMoney,
+            'note' => $request->note,
+            'name' => $request->name,
+            'email' => $request->email,
+            'adress' => $request->address,
+            'phone' => $request->phone,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $transactionId = Transaction::insertGetId($requestData);
+        if($transactionId)
+        {
+            $products = \Cart::content();
+            foreach ( $products as $product)
+            {
+                Order::insert([
+                    'transaction_id' => $transactionId,
+                    'product_id' => $product->id,
+                    'quantity' => $product->qty,
+                    'price' => $product->options->price_old,
+                    'sale' => $product->options->sale
+                ]);
+            }
+        }
+        $dataMail =[
+            'name' => $request->name,
+            'products' => $products,
+            'transactionId' => $transactionId,
+            'requestData' => $requestData
+        ];
+        $email = $request->email;
+        Mail::send('client.mail',$dataMail,function ($message) use ($email,$transactionId) {
+
+            $message->to($email);
+            $message->subject("Xác nhận đơn hàng #$transactionId từ Pebona Shop");
+
+        });
+        $viewData = [
+            'requestData' => $requestData,
+            'products' => $products,
+            'transactionId' => $transactionId,
+            'countProduct' => $countProduct
+        ];
+        \Cart::destroy();
+
+        return view('client.cart.thankyou',$viewData);
+    }
 }

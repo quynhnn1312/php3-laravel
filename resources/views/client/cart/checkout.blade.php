@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12">
                     <nav class="breadcrumb">
-                        <a class="breadcrumb-item" href="index.html">Home</a>
+                        product-list                <a class="breadcrumb-item" href="index.html">Home</a>
                         <a class="breadcrumb-item" href="cart.html">Shopping Cart</a>
                         <span class="breadcrumb-item active">Checkout</span>
                     </nav>
@@ -84,187 +84,65 @@
                             </div> <!-- end of user-actions -->
 
                             <div class="checkout-area">
+                                <form action="{{ route('post.checkout') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                                         <div class="checkout-form">
                                             <div class="section-title left-aligned">
                                                 <h2>Billing Details</h2>
                                             </div>
-
-                                            <form action="#">
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="first_name">First Name <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="first_name" required="">
-                                                    </div>
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="last_name">Last Name <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="last_name" required="">
-                                                    </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="first_name">Name <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="first_name" name="name" placeholder="Enter your first and last name ...">
+                                                    @if($errors->has('name'))
+                                                        <span class="error-text">
+                                                            {{$errors->first('name')}}
+                                                        </span>
+                                                    @endif
                                                 </div>
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="company_name">Company</label>
-                                                        <input type="text" class="form-control" id="company_name">
-                                                    </div>
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="email_address">Email Address <span class="text-danger">*</span></label>
-                                                        <input type="email" class="form-control" id="email_address" required="">
-                                                    </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="email_address">Email Address <span class="text-danger">*</span></label>
+                                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email_address" placeholder="Enter your email address ...">
+                                                    @if($errors->has('email'))
+                                                        <span class="error-text">
+                                                            {{$errors->first('email')}}
+                                                        </span>
+                                                    @endif
                                                 </div>
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12">
-                                                        <label for="p_address">Address <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="p_address" required="">
-                                                    </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="p_address">Address <span class="text-danger">*</span></label>
+                                                    <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" id="p_address" placeholder="Enter your address ...">
+                                                    @if($errors->has('address'))
+                                                        <span class="error-text">
+                                                            {{$errors->first('address')}}
+                                                        </span>
+                                                    @endif
                                                 </div>
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="city_name">City <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="city_name" required="">
-                                                    </div>
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="province_name">Province <span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="province_name" required="">
-                                                    </div>
+                                            </div>
+                                            <div class="form-row mb-3">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="tel_number">telephone</label>
+                                                    <input type="tel" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="Enter your phone ..." id="tel_number">
+                                                    @if($errors->has('phone'))
+                                                        <span class="error-text">
+                                                            {{$errors->first('phone')}}
+                                                        </span>
+                                                    @endif
                                                 </div>
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="zip_code">Zip Code <span class="text-danger">*</span></label>
-                                                        <input type="number" class="form-control" id="zip_code" required="">
-                                                    </div>
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="country_name" class="d-block">Country <span class="text-danger">*</span></label>
-                                                        <select name="country_id" id="country_name" class="form-control nice-select" required="" style="display: none;">
-                                                            <option value=""> --- Please Select --- </option>
-                                                            <option value="">Argentina</option>
-                                                            <option value="">Bangladesh</option>
-                                                            <option value="">Belgium</option>
-                                                            <option value="">Brazil</option>
-                                                            <option value="">Germany</option>
-                                                            <option value="">India</option>
-                                                            <option value="">United Kingdom</option>
-                                                            <option value="">United States</option>
-                                                        </select><div class="nice-select form-control" tabindex="0"><span class="current"> --- Please Select --- </span><ul class="list"><li data-value="" class="option selected"> --- Please Select --- </li><li data-value="" class="option">Argentina</li><li data-value="" class="option">Bangladesh</li><li data-value="" class="option">Belgium</li><li data-value="" class="option">Brazil</li><li data-value="" class="option">Germany</li><li data-value="" class="option">India</li><li data-value="" class="option">United Kingdom</li><li data-value="" class="option">United States</li></ul></div>
-                                                    </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12 col-sm-12 col-md-12">
+                                                    <label for="order_notes">Order Notes</label>
+                                                    <textarea class="form-control" name="note" id="order_notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                                 </div>
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="tel_number">telephone</label>
-                                                        <input type="tel" class="form-control" id="tel_number">
-                                                    </div>
-                                                    <div class="form-group col-12 col-sm-12 col-md-6">
-                                                        <label for="fax_num">Fax</label>
-                                                        <input type="text" class="form-control" id="fax_num">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12">
-                                                        <div class="form-check mb-3">
-                                                            <div class="custom-checkbox">
-                                                                <input class="form-check-input" type="checkbox" id="create_account">
-                                                                <span class="checkmark"></span>
-                                                                <label class="form-check-label" for="create_account">Create an account?</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="new-account-info mt-4">
-                                                            <div class="form-row">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <p class="mb-4">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                                                    <label for="new_pass">Account Password <span class="text-danger">*</span></label>
-                                                                    <input type="password" class="form-control" id="new_pass">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12">
-                                                        <div class="form-check mb-3">
-                                                            <div class="custom-checkbox">
-                                                                <input class="form-check-input" type="checkbox" id="different_shipping">
-                                                                <span class="checkmark"></span>
-                                                                <label class="form-check-label" for="different_shipping" id="different_shipping_address">Ship to a different address?</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ship-box-info mt-4">
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-6">
-                                                                    <label for="f_name">First Name <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" id="f_name" required="">
-                                                                </div>
-                                                                <div class="form-group col-12 col-sm-12 col-md-6">
-                                                                    <label for="l_name">Last Name <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" id="l_name" required="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-6">
-                                                                    <label for="com_name">Company</label>
-                                                                    <input type="text" class="form-control" id="com_name">
-                                                                </div>
-                                                                <div class="form-group col-12 col-sm-12 col-md-6">
-                                                                    <label for="email_add">Email Address <span class="text-danger">*</span></label>
-                                                                    <input type="email" class="form-control" id="email_add" required="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="coun_name" class="d-block">Country <span class="text-danger">*</span></label>
-                                                                    <select name="country_id" id="coun_name" class="form-control nice-select" required="" style="display: none;">
-                                                                        <option value=""> --- Please Select --- </option>
-                                                                        <option value="">Argentina</option>
-                                                                        <option value="">Bangladesh</option>
-                                                                        <option value="">Belgium</option>
-                                                                        <option value="">Brazil</option>
-                                                                        <option value="">Germany</option>
-                                                                        <option value="">India</option>
-                                                                        <option value="">United Kingdom</option>
-                                                                        <option value="">United States</option>
-                                                                    </select><div class="nice-select form-control" tabindex="0"><span class="current"> --- Please Select --- </span><ul class="list"><li data-value="" class="option selected"> --- Please Select --- </li><li data-value="" class="option">Argentina</li><li data-value="" class="option">Bangladesh</li><li data-value="" class="option">Belgium</li><li data-value="" class="option">Brazil</li><li data-value="" class="option">Germany</li><li data-value="" class="option">India</li><li data-value="" class="option">United Kingdom</li><li data-value="" class="option">United States</li></ul></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="street_add">Street Address</label>
-                                                                    <input type="text" class="form-control" id="street_add">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="ap_add">Apartment, suite, unit etc. (optional)</label>
-                                                                    <input type="text" class="form-control" id="ap_add">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="cit_name">City <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" id="cit_name" required="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-3">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="prov_name">Province <span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control" id="prov_name" required="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col-12 col-sm-12 col-md-12">
-                                                                    <label for="zp_code">Zip Code <span class="text-danger">*</span></label>
-                                                                    <input type="number" class="form-control" id="zp_code" required="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12">
-                                                        <label for="order_notes">Order Notes</label>
-                                                        <textarea class="form-control" id="order_notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div> <!-- end of checkout-form -->
+                                            </div>
+                                    </div> <!-- end of checkout-form -->
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-5">
                                         <div class="order-summary">
@@ -272,34 +150,24 @@
                                                 <h2>Your Order</h2>
                                             </div>
                                             <div class="product-container">
-                                                <div class="product-list">
-                                                    <div class="product-inner media align-items-center">
-                                                        <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
-                                                            <a href="#">
-                                                                <img src="assets/images/products/new/product-1.jpg" alt="Compete Track Tote" title="Compete Track Tote">
-                                                            </a>
+                                                @if(isset($products))
+                                                    @foreach($products as $product)
+                                                        <div class="product-list">
+                                                            <div class="product-inner media align-items-center">
+                                                                <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
+                                                                    <a href="{{ route('get.single.product',[\Str::slug($product->name,'-'),$product->id]) }}">
+                                                                        <img src="{{ asset('storage/'. $product->options->image)}}" alt="{{ $product->name }}" title="{{ $product->name }}">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h5>{{ $product->name }}</h5>
+                                                                    <p class="product-quantity">Quantity: {{ $product->qty }}</p>
+                                                                    <p class="product-final-price">{{ number_format($product->price,0,',','.') }}đ</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="media-body">
-                                                            <h5>Compete Track Tote</h5>
-                                                            <p class="product-quantity">Quantity: 3</p>
-                                                            <p class="product-final-price">$180.00</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-list">
-                                                    <div class="product-inner media align-items-center">
-                                                        <div class="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
-                                                            <a href="#">
-                                                                <img src="assets/images/products/new/product-3.jpg" alt="Rival Field Messenger 6" title="Rival Field Messenger 6">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5>Rival Field Messenger 6</h5>
-                                                            <p class="product-quantity">Quantity: 5</p>
-                                                            <p class="product-final-price">$260.00</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    @endforeach
+                                                @endif
                                             </div> <!-- end of product-container -->
                                             <div class="order-review">
                                                 <div class="table-responsive">
@@ -307,64 +175,45 @@
                                                         <tbody>
                                                         <tr class="cart-subtotal">
                                                             <th>Subtotal</th>
-                                                            <td class="text-center">$440.00</td>
+                                                            <td class="text-center">{{ \Cart::subtotal(0.3) }}đ</td>
                                                         </tr>
                                                         <tr class="order-total">
                                                             <th>Total</th>
-                                                            <td class="text-center"><strong><span class="color-primary">$440.00</span></strong></td>
+                                                            <td class="text-center"><strong><span class="color-primary">{{ \Cart::subtotal(0.3) }}đ</span></strong></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             <div class="checkout-payment">
-                                                <form action="#">
-                                                    <div class="form-row">
-                                                        <div class="custom-radio">
-                                                            <input class="form-check-input" type="radio" name="payment" id="check_payment" value="check" checked="">
-                                                            <span class="checkmark"></span>
-                                                            <label class="form-check-label" for="check_payment">Check Payments</label>
+                                                <div class="form-row">
+                                                    <div class="custom-radio">
+                                                        <input class="form-check-input" type="radio" checked name="payment" id="cash_delivery_payment" value="cash">
+                                                        <span class="checkmark"></span>
+                                                        <label class="form-check-label" for="cash_delivery_payment">Cash on Delivery</label>
 
-                                                            <div class="payment-info" id="check_pay">
-                                                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="custom-radio">
-                                                            <input class="form-check-input" type="radio" name="payment" id="cash_delivery_payment" value="cash">
-                                                            <span class="checkmark"></span>
-                                                            <label class="form-check-label" for="cash_delivery_payment">Cash on Delivery</label>
-
-                                                            <div class="payment-info" id="cash_pay">
-                                                                <p>Pay with cash upon delivery.</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="custom-radio">
-                                                            <input class="form-check-input" type="radio" name="payment" id="paypal_payment" value="paypal">
-                                                            <span class="checkmark"></span>
-                                                            <label class="form-check-label" for="paypal_payment">PayPal Express Checkout</label>
-
-                                                            <div class="payment-info" id="paypal_pay">
-                                                                <p>Pay via PayPal. You can pay with your credit card if you don’t have a PayPal account.</p>
-                                                            </div>
+                                                        <div class="payment-info" id="cash_pay">
+                                                            <p>Pay with cash upon delivery.</p>
                                                         </div>
                                                     </div>
-                                                    <div class="form-row">
-                                                        <div class="form-check">
-                                                            <div class="custom-checkbox">
-                                                                <input class="form-check-input" type="checkbox" id="terms_acceptance" required="">
-                                                                <span class="checkmark"></span>
-                                                                <label class="form-check-label" for="terms_acceptance">I agree to the <a href="#">terms of service</a> and will adhere to them unconditionally.</label>
-                                                            </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-check">
+                                                        <div class="custom-checkbox">
+                                                            <input class="form-check-input" type="checkbox" id="terms_acceptance" required="">
+                                                            <span class="checkmark"></span>
+                                                            <label class="form-check-label" for="terms_acceptance">I agree to the <a href="#">terms of service</a> and will adhere to them unconditionally.</label>
                                                         </div>
                                                     </div>
-                                                    <div class="form-row justify-content-end">
-                                                        <input type="submit" class="btn btn-secondary dark" value="Continue to Payment">
-                                                    </div>
-                                                </form>
+                                                </div>
+                                                <div class="form-row justify-content-end">
+                                                    <input type="submit" class="btn btn-secondary dark" value="Continue to Payment">
+                                                </div>
                                             </div> <!-- end of checkout-payment -->
                                         </div> <!-- end of order-summary -->
                                     </div>
                                 </div> <!-- end of row -->
+                                </form>
                             </div> <!-- end of checkout-area -->
                         </main> <!-- end of #primary -->
                     </div>

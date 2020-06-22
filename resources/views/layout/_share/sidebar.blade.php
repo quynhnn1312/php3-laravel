@@ -32,5 +32,13 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item has-treeview">
+            <a href="{{ route('get.list.transaction') }}" class="nav-link {{ \Request::route()->getName() == 'get.list.transaction' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                    Đơn hàng
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>

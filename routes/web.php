@@ -96,6 +96,12 @@ Route::prefix('admin')->middleware('check.login.admin')->group(function (){
     Route::get('users/edit/{id}','UserController@edit')->name('get.edit.user');
     Route::post('users/edit/{id}','UserController@update');
     Route::get('users/{action}/{id}','UserController@action')->name('get.action.user');
+// quản lý đơn hàng
+    Route::get('transaction','TransactionController@index')->name('get.list.transaction');
+    Route::get('transaction/delete/{id}','TransactionController@delete')->name('get.delete.transaction');
+    Route::get('transaction/{action}/{id}','TransactionController@getAction')->name('get.action.transaction');
+    Route::post('transaction/detail','TransactionController@detailTransaction')->name('post.detail.transaction');
+    Route::post('transaction/order/delete','TransactionController@deleteOrderItem')->name('transaction.order.delete');
 });
 
 

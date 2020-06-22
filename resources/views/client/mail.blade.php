@@ -229,7 +229,7 @@
                                             alt="Alternate text"
                                             border="0"
                                             class="center fixedwidth"
-                                            src="{{ asset('mail/images/logo.png')}}"
+                                            src="{{ $message->embed(asset('mail/images/logo.png')) }}"
                                             style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 140px; display: block;"
                                             title="Alternate text"
                                             width="140"
@@ -343,7 +343,7 @@
                                             alt="Alternate text"
                                             border="0"
                                             class="center autowidth"
-                                            src="{{ asset('mail/images/First_Image_peace_girl.png')}}"
+                                            src="{{ $message->embed(asset('mail/images/First_Image_peace_girl.png')) }}"
                                             style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 700px; display: block;"
                                             title="Alternate text"
                                             width="700"
@@ -471,7 +471,7 @@
                                                             mso-line-height-alt: 14px;
                                                         "
                                         >
-                                            <p style="font-size: 28px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 34px; margin: 0;"><span style="font-size: 28px;">Xin chào Ngọc</span></p>
+                                            <p style="font-size: 28px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 34px; margin: 0;"><span style="font-size: 28px;">Xin chào {{ $requestData['name'] }}</span></p>
                                             <br>
                                             <p style="font-size: 28px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 34px; margin: 0;"><span style="font-size: 28px;">Cảm ơn Anh/chị đã đặt hàng tại Pebona Shop</span></p>
                                         </div>
@@ -2193,7 +2193,7 @@
                                             alt="Alternate text"
                                             border="0"
                                             class="center autowidth"
-                                            src="{{ asset('storage',$pro->options->image)}}"
+                                            src="{{ $message->embed($urlPath.$pro->options->image) }}"
                                             style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 125px; display: block;"
                                             title="Alternate text"
                                             width="125"
@@ -3198,7 +3198,7 @@
                                             alt="Alternate text"
                                             border="0"
                                             class="center autowidth"
-                                            src="{{ asset('mail/images/offer.png')}}"
+                                            src="{{ $message->embed(asset('mail/images/offer.png')) }}"
                                             style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 350px; display: block;"
                                             title="Alternate text"
                                             width="350"
@@ -3451,6 +3451,7 @@
                                     <!--[if mso]></td></tr></table><![endif]-->
                                     <div align="center" class="button-container" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
                                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:39pt; width:282pt; v-text-anchor:middle;" arcsize="8%" stroke="false" fillcolor="#232323"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Tahoma, sans-serif; font-size:16px"><![endif]-->
+                                        <a href="{{ route('get.home') }}">
                                         <div
                                             style="
                                                             text-decoration: none;
@@ -3478,6 +3479,7 @@
                                                             <span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;">SHOP SOME MORE</span>
                                                         </span>
                                         </div>
+                                        </a>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
                                     <table
@@ -3656,7 +3658,7 @@
                                             alt="I'm an image"
                                             border="0"
                                             class="center autowidth"
-                                            src="{{ asset('mail/images/logo.png')}}"
+                                            src="{{ $message->embed(asset('mail/images/logo.png')) }}"
                                             style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 140px; display: block;"
                                             title="I'm an image"
                                             width="140"
@@ -3769,7 +3771,7 @@
                                                                 <img
                                                                     alt="Facebook"
                                                                     height="32"
-                                                                    src="{{ asset('mail/images/facebook2x.png')}}"
+                                                                    src="{{ $message->embed(asset('mail/images/facebook2x.png')) }}"
                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
                                                                     title="Facebook"
                                                                     width="32"
@@ -3781,7 +3783,7 @@
                                                                 <img
                                                                     alt="Twitter"
                                                                     height="32"
-                                                                    src="{{ asset('mail/images/twitter2x.png')}}"
+                                                                    src="{{ $message->embed(asset('mail/images/twitter2x.png')) }}"
                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
                                                                     title="Twitter"
                                                                     width="32"
@@ -3793,7 +3795,7 @@
                                                                 <img
                                                                     alt="Instagram"
                                                                     height="32"
-                                                                    src="{{ asset('mail/images/instagram2x.png')}}"
+                                                                    src="{{ $message->embed(asset('mail/images/instagram2x.png')) }}"
                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
                                                                     title="Instagram"
                                                                     width="32"
@@ -3805,7 +3807,7 @@
                                                                 <img
                                                                     alt="LinkedIn"
                                                                     height="32"
-                                                                    src="{{ asset('mail/images/linkedin2x.png')}}"
+                                                                    src="{{ $message->embed(asset('mail/images/linkedin2x.png')) }}"
                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; display: block;"
                                                                     title="LinkedIn"
                                                                     width="32"

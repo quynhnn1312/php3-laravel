@@ -20,6 +20,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        @if(\Cart::count() == 0)
+                        <div style="margin-bottom: 100px" class="page-content not-item text-center" id="no-shopping-cartxx">
+                            <div class="img text-center">
+                                <img src="http://localhost/php3/php3-laravel/public/./images/empty_cart4fcc.png">
+                            </div>
+                            <p style="margin: 10px 0;">
+                                Không có sản phẩm nào trong giỏ hàng của bạn
+                            </p>
+                            <div style="padding: 20px 0;" class="ctnBuy button-action">
+                                <a style="display: inline-block;
+                                        border: 0;
+                                        background:#cc2121;
+                                        height: 50px;
+                                        padding: 0 40px;
+                                        border-radius: 50px;
+                                        font-size: 16px;
+                                        text-decoration: none;
+                                        line-height: 50px;
+                                        transition: all .3s;
+                                        color: #fff;
+                                        text-transform: uppercase;
+                                        font-weight: 300;
+                                        border: 1px solid #86590d !important;
+                                    }" title="Tiếp tục" href="{{ route('get.home') }}" class="btn btn-outline closeCartLine">Tiếp tục mua hàng
+                                </a>
+                            </div>
+                        </div>
+                        @else
                         <main id="primary" class="site-main">
                             <div class="user-actions-area">
                                 <div class="row">
@@ -216,6 +244,7 @@
                                 </form>
                             </div> <!-- end of checkout-area -->
                         </main> <!-- end of #primary -->
+                        @endif
                     </div>
                 </div> <!-- end of row -->
             </div> <!-- end of container -->

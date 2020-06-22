@@ -27,4 +27,7 @@
     .error-text{
         color: red;
     }
+    *{
+      font-size: 15px;
+    }
 </style>

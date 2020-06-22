@@ -22,11 +22,11 @@
             <div class="card-header d-flex justify-content-between">
                 <form class="form-inline" method="get" action="">
                     <div class="form-group">
-                        <input type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
+                        <input style="border-radius: 0" type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
                     </div>
                     &nbsp;
                     <div class="form-group">
-                        <select name="key_cate" id="" class="form-control">
+                        <select name="key_cate" style="border-radius: 0" id="" class="form-control">
                             <option value="">Danh mục</option>
                             @if(isset($cates))
                                 @foreach($cates as $cate)
@@ -34,8 +34,8 @@
                                 @endforeach
                             @endif
                         </select>
-                    </div> &nbsp;
-                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div> &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                 </form>
                  <div>
                     <a class="btn btn-outline-success" href="{{ route('get.create.product') }}"><i class="fas fa-plus"></i> Thêm mới</a>
@@ -69,7 +69,8 @@
                                     <img width="100px" src="{{ asset('storage/'.$product->image) }}" alt="">
                                 </td>
                                 <td>
-                                    {{ number_format($product->price,0,',','.') }}đ
+                                    <del>{{ number_format($product->price,0,',','.') }}đ</del>
+                                    <p>{{ number_format($product->price * (100 - $product->sale)/100 ,0,',','.') }}đ</p>
                                 </td>
                                 <td>
                                     {{ $product->count }}
@@ -83,7 +84,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-info" href="{{ route('get.edit.product',$product->id) }}"><i class="fas fa-pencil-alt"></i> Cập nhật</a>
-                                    <a class="btn btn-sm btn-outline-info" onclick="deleteCate(event)" href="{{ route('get.action.product', ['delete',$product->id]) }}"><i class="far fa-trash-alt"></i> Xóa</a>
+                                    <a class="btn btn-sm btn-outline-danger" onclick="deleteCate(event)" href="{{ route('get.action.product', ['delete',$product->id]) }}"><i class="far fa-trash-alt"></i> Xóa</a>
                                 </td>
                             </tr>
                         @endforeach

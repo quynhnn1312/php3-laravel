@@ -22,9 +22,9 @@
             <div class="card-header d-flex justify-content-between">
                 <form class="form-inline" method="get" action="">
                     <div class="form-group">
-                        <input type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
+                        <input style="border-radius: 0" type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
                     </div> &nbsp;
-                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                 </form>
                 <div>
                     <a class="btn btn-outline-success" href="{{ route('get.create.user') }}"><i class="fas fa-plus"></i> Thêm mới</a>
@@ -68,7 +68,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-info" href="{{ route('get.edit.user',$user->id) }}"><i class="fas fa-pencil-alt"></i> Cập nhật</a>
-                                    <a class="btn btn-sm btn-outline-info" onclick="deleteUser({{ $user->id }})" href="javascript:void(0)"><i class="far fa-trash-alt"></i> Xóa</a>
+                                    <a class="btn btn-sm btn-outline-danger" onclick="deleteUser({{ $user->id }})" href="javascript:void(0)"><i class="far fa-trash-alt"></i> Xóa</a>
                                 </td>
                             </tr>
                         @endforeach

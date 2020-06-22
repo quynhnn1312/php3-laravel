@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 
-class ShoppingCartController extends Controller
+class ShoppingCartController extends FrontendController
 {
     public function listCart()
     {
@@ -130,11 +130,13 @@ class ShoppingCartController extends Controller
                 ]);
             }
         }
+        $urlPath = public_path() . '/storage/';
         $dataMail =[
             'name' => $request->name,
             'products' => $products,
             'transactionId' => $transactionId,
-            'requestData' => $requestData
+            'requestData' => $requestData,
+            'urlPath' => $urlPath
         ];
         $email = $request->email;
         Mail::send('client.mail',$dataMail,function ($message) use ($email,$transactionId) {

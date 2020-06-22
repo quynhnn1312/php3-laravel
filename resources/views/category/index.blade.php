@@ -22,9 +22,9 @@
             <div class="card-header d-flex justify-content-between">
                 <form class="form-inline" method="get" action="">
                     <div class="form-group">
-                        <input type="text" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
-                    </div> &nbsp;
-                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        <input type="text" style="border-radius: 0" name="keyword" value="{{ \Request('keyword') }}" class="form-control" placeholder="Nhập tên tìm kiếm ...">
+                    </div> &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                 </form>
                 <div>
                     <a class="btn btn-outline-success" href="{{ route('get.add.cate') }}"><i class="fas fa-plus"></i> Thêm mới</a>

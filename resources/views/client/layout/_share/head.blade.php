@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/ionicons.min.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/pe-icon-7-stroke.css')}}">
-
+{{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">--}}
 <!-- Plugins stylesheet -->
 <link rel="stylesheet" href="{{ asset('assets/css/plugins.css')}}">
 
@@ -33,3 +33,4 @@
 <!-- modernizr JS
 ============================================ -->
 <script src="{{ asset('assets/js/modernizr-2.8.3.min.js')}}"></script>
+

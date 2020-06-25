@@ -5,8 +5,16 @@
                 <div class="col-12 order-2 col-sm-12 order-sm-2 col-md-8 order-md-1 align-self-center">
                     <p>Mid-season sale up to 20% OFF. Use code "SALEOFF20"</p>
                 </div>
+
                 <div class="col-12 order-1 col-sm-12 order-sm-1 col-md-4 order-md-2">
                     <ul class="list-inline">
+                        @if(Auth::check())
+                        <li class="currency list-inline-item">
+                            <div class="btn-group d-flex align-items-center">
+                                Hello! &nbsp;<b> {{ Auth::user()->name }}</b>&nbsp; <img class="img-rounded" style="box-shadow: 0px 4px 11px #fff;border-radius: 50%" src="{{ isset(Auth::user()->avatar) ? isset(Auth::user()->google_id) ? Auth::user()->avatar :  asset('storage/'.Auth::user()->avatar) : asset('storage/users/user.png') }}" width="30px" alt="">
+                            </div>
+                        </li>
+                        @endif
                         <li class="currency list-inline-item">
                             <div class="btn-group">
                                 <button class="btn-link dropdown-toggle"> USD $<i class="fa fa-angle-down"></i></button>
@@ -116,11 +124,15 @@
                                     <button class="btn-link dropdown-toggle"><i class="pe-7s-config"></i></button>
                                     <div class="dropdown-menu">
                                         <ul>
+                                            @if (!Auth::check())
                                             <li><a href="{{ route('get.register') }}">Register</a></li>
                                             <li><a href="{{ route('get.login') }}">Login</a></li>
+                                            @else
                                             <li><a href="{{ route('get.my-account') }}">My Account</a></li>
                                             <li><a href="{{ route('get.wishlist') }}">Wishlist</a></li>
                                             <li><a href="{{ route('get.checkout') }}">Checkout</a></li>
+                                            <li><a href="{{ route('get.logout') }}">Logout</a></li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>

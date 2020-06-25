@@ -82,14 +82,14 @@
             position: 'top-end'
         })
     }
-{{--    @if(Session::has('message'))--}}
-{{--    Toast.fire({--}}
-{{--        icon: 'success',--}}
-{{--        title: "{{ Session::get('message') }}",--}}
-{{--        position: 'top-end'--}}
-{{--    })--}}
-{{--    {{ Session::put('message', null) }}--}}
-{{--    @endif--}}
+    @if(Session::has('message'))
+    Toast.fire({
+        icon: 'success',
+        title: "{{ Session::get('message') }}",
+        position: 'top-end'
+    })
+    {{ Session::put('message', null) }}
+    @endif
 {{--    @if(Session::has('error'))--}}
 {{--    Toast.fire({--}}
 {{--        icon: 'error',--}}

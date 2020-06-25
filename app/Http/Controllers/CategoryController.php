@@ -11,13 +11,13 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::paginate(5);
+        $categories = Category::orderByDesc('id')->paginate(5);
 
         $keyword = $request->keyword;
 
         if(trim($keyword))
         {
-            $categories = Category::where('cate_name', 'like', '%'. $keyword . '%')->paginate(5);
+            $categories = Category::where('cate_name', 'like', '%'. $keyword . '%')->orderByDesc('id')->paginate(5);
             $categories->withPath("?keyword=$keyword");
         }
 

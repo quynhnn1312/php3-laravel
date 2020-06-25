@@ -13,8 +13,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
-        $users = User::paginate(5)->withPath("?keyword=$keyword");
-        if($keyword) $users = User::where('name','like','%'.$keyword.'%')->paginate(5)->withPath("?keyword=$keyword");
+        $users = User::orderBy('id','DESC')->paginate(5)->withPath("?keyword=$keyword");
+        if($keyword) $users = User::where('name','like','%'.$keyword.'%')->orderBy('id','DESC')->paginate(5)->withPath("?keyword=$keyword");
         return view('user.index', compact('users'));
     }
 

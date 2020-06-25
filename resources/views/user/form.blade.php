@@ -58,7 +58,7 @@
                         @endif
                         <div class="form-group">
                             <label for="email">Mật khẩu mới:</label>
-                            <input type="password" name="password" placeholder="Nhập mật khẩu mới" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror">
+                            <input type="password" name="password" placeholder="Nhập mật khẩu mới"class="form-control @error('password') is-invalid @enderror">
                             <span onclick="eyePassword(event)" class="eye-password"><i class="fas fa-eye"></i></span>
                             @if($errors->has('password'))
                                 <span class="error-text">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Nhập lại Mật khẩu:</label>
-                            <input type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation" value="{{ old('confirm-password') }}" class="form-control @error('confirm-password') is-invalid @enderror">
+                            <input type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation"class="form-control @error('confirm-password') is-invalid @enderror">
                             <span onclick="eyePassword(event)" class="eye-password"><i class="fas fa-eye"></i></span>
                         </div>
                         <div class="form-group">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group text-center mt-3">
-                            <img src="{{ isset($user->avatar) ? asset('storage/'.$user->avatar) : asset('storage/users/user.png') }}" id="output" class="img img-thumbnail" width="40%" alt="">
+                            <img src="{{ isset($user->avatar) ? isset($user->google_id) ? asset($user->avatar) : asset('storage/'.$user->avatar) : asset('storage/users/user.png') }}" id="output" class="img img-thumbnail" width="40%" alt="">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Avatar:</label>

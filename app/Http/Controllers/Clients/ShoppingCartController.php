@@ -48,7 +48,7 @@ class ShoppingCartController extends FrontendController
             'price' => $price,
             'options' => [
                 'image' => $product->image,
-                'sale' => $product->sale,
+                'sale' => $product->sale ? $product->sale : null,
                 'price_old' => $product->price
             ]
         ]);
@@ -126,7 +126,7 @@ class ShoppingCartController extends FrontendController
                     'product_id' => $product->id,
                     'quantity' => $product->qty,
                     'price' => $product->options->price_old,
-                    'sale' => $product->options->sale
+                    'sale' => $product->options->sale ? $product->options->sale : 0,
                 ]);
             }
         }

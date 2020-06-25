@@ -28,7 +28,20 @@ class TransactionController extends Controller
         if ($status = $request->status) {
             $transactions->where('status',$status);
         }
-
+        if($request->price_min && $request->price_max) {
+            $price_min = (int)str_replace("." , "" , $request->price_min);
+            $price_max = (int)str_replace("." , "" , $request->price_max);
+            $transactions->where('total','>=',$price_min);
+            $transactions->where('total','<=',$price_max);
+        }
+        if($request->price_min && !$request->price_max){
+            $price_min = (int)str_replace("." , "" , $request->price_min);
+            $transactions->where('total','>=',$price_min);
+        }
+        if(!$request->price_min && $request->price_max){
+            $price_max = (int)str_replace("." , "" , $request->price_max);
+            $transactions->where('total','<=',$price_max);
+        }
         $transactions = $transactions->orderByDesc('id')
             ->paginate(5);
 //        if ($request->export) {
@@ -76,20 +89,10 @@ class TransactionController extends Controller
         if($request->ajax())
         {
             $orders = Order::with('product')->where('transaction_id',$request->id)->get();
-            $html = view('component.order', compact('orders'))->render();
+            $status = $request->status;
+            $html = view('component.order', compact('orders','status'))->render();
             return response()->json($html);
         }
     }
 
-    public function deleteOrderItem(Request $request)
-    {
-        if($request->ajax())
-        {
-            Order::destroy($request->id);
-            $transaction = Transaction::find($request->transactionId);
-            $transaction->total = $transaction->total - $request->price;
-            $transaction->save();
-            return response()->json(['message' => 'Xóa thành công !', 'totalTransaction' => number_format($transaction->total,0,',','.') ]);
-        }
-    }
 }

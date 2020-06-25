@@ -123,7 +123,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-12">
                                                     <label for="first_name">Name <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="first_name" name="name" placeholder="Enter your first and last name ...">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', isset(Auth::user()->name) ? Auth::user()->name : '') }}" id="first_name" name="name" placeholder="Enter your first and last name ...">
                                                     @if($errors->has('name'))
                                                         <span class="error-text">
                                                             {{$errors->first('name')}}
@@ -134,7 +134,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-12">
                                                     <label for="email_address">Email Address <span class="text-danger">*</span></label>
-                                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email_address" placeholder="Enter your email address ...">
+                                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', isset(Auth::user()->email) ? Auth::user()->email : '') }}" id="email_address" placeholder="Enter your email address ...">
                                                     @if($errors->has('email'))
                                                         <span class="error-text">
                                                             {{$errors->first('email')}}
@@ -145,7 +145,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-12">
                                                     <label for="p_address">Address <span class="text-danger">*</span></label>
-                                                    <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" id="p_address" placeholder="Enter your address ...">
+                                                    <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address',isset(Auth::user()->address) ? Auth::user()->address : '') }}" id="p_address" placeholder="Enter your address ...">
                                                     @if($errors->has('address'))
                                                         <span class="error-text">
                                                             {{$errors->first('address')}}
@@ -156,7 +156,7 @@
                                             <div class="form-row mb-3">
                                                 <div class="form-group col-12 col-sm-12 col-md-12">
                                                     <label for="tel_number">telephone</label>
-                                                    <input type="tel" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="Enter your phone ..." id="tel_number">
+                                                    <input type="tel" name="phone" value="{{ old('phone', isset(Auth::user()->phone) ? Auth::user()->phone : '') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="Enter your phone ..." id="tel_number">
                                                     @if($errors->has('phone'))
                                                         <span class="error-text">
                                                             {{$errors->first('phone')}}

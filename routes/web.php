@@ -42,28 +42,28 @@ Route::namespace('Clients')->group(function (){
     Route::get('/send-mail', function () {
             return  view('client.mail');
     });
+    // Login
+    Route::get('/login', 'LoginController@getLogin')->name('get.login');
+    Route::post('/login', 'LoginController@postLogin')->name('post.login');
+    Route::get('/logout', 'LoginController@logout')->name('get.logout');
+    Route::get('/register', 'LoginController@getRegister')->name('get.register');
+    Route::post('/register', 'LoginController@postRegister')->name('post.register');
 
 
+    Route::middleware('auth')->group(function () {
+        Route::get('/my-account', 'MyAccountController@index')->name('get.my-account');
+        Route::post('/cancel-transaction/{id}', 'MyAccountController@cancelTransaction')->name('cancel.transaction');
+        Route::post('view-order','MyAccountController@viewOrder')->name('post.view.order');
+        Route::get('/wishlist',function (){
+            return view('client.wishlist');
+        })->name('get.wishlist');
 
 
+    });
 
-
-    Route::get('/register',function (){
-        return view('client.register');
-    })->name('get.register');
-
-    Route::get('/login',function (){
-        return view('client.login');
-    })->name('get.login');
-
-    Route::get('/my-account',function (){
-        return view('client.my-account');
-    })->name('get.my-account');
-
-    Route::get('/wishlist',function (){
-        return view('client.wishlist');
-    })->name('get.wishlist');
-
+    // login google
+    Route::get('/redirect', 'LoginController@redirectToProvider')->name('auth.login');
+    Route::get('auth/callback', 'LoginController@handleProviderCallback');
 });
 // ADMIN
 
@@ -101,7 +101,6 @@ Route::prefix('admin')->middleware('check.login.admin')->group(function (){
     Route::get('transaction/delete/{id}','TransactionController@delete')->name('get.delete.transaction');
     Route::get('transaction/{action}/{id}','TransactionController@getAction')->name('get.action.transaction');
     Route::post('transaction/detail','TransactionController@detailTransaction')->name('post.detail.transaction');
-    Route::post('transaction/order/delete','TransactionController@deleteOrderItem')->name('transaction.order.delete');
 });
 
 

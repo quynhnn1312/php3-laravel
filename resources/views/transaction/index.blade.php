@@ -29,7 +29,7 @@
             <div class="card-header d-flex justify-content-between">
                 <form class="form-inline" method="get" action="">
                     <div class="form-group">
-                        <input style="border-radius: 0" type="text" name="id" value="{{ \Request('id') }}" class="form-control" placeholder="ID">
+                        <input style="border-radius: 0;width: 150px" type="text" name="id" value="{{ \Request('id') }}" class="form-control" placeholder="ID">
                     </div> &nbsp;&nbsp;
                     <div class="form-group">
                         <input style="border-radius: 0" type="text" name="email" value="{{ \Request('email') }}" class="form-control" placeholder="Email ...">
@@ -50,6 +50,12 @@
                             <option value="-1" {{ Request::get('status') == -1 ? "selected='selected'" : "" }}>Huỷ bỏ</option>
                         </select>
                     </div> &nbsp;&nbsp&nbsp;
+                    <div class="form-group">
+                        Lọc giá:
+                        <input style="border-radius: 0;width: 100px" type="text" oninput="numberWithCommas(this)" name="price_min" value="{{ \Request('price_min') }}" class="form-control" placeholder="100.000...đ"><i class="fas fa-long-arrow-alt-right"></i>
+                        <input style="border-radius: 0;width: 100px" type="text" oninput="numberWithCommas(this)" name="price_max" value="{{ \Request('price_max') }}" class="form-control" placeholder="500.000...đ">
+                    </div> &nbsp;&nbsp&nbsp;
+
                     <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>&nbsp;
                     <button type="submit" name="export" value="true" class="btn btn-info">
                         <i class="fa fa-save"></i> Export
@@ -195,30 +201,12 @@
             })
         })
 
-        function deleteOrderItem(event, id, price,transactionId) {
-            event.preventDefault();
-            $.ajax({
-                url: '{{ route('transaction.order.delete') }}',
-                type:'POST',
-                data: {
-                    _token : '{{ csrf_token() }}',
-                    id : id,
-                    price : price,
-                    transactionId: transactionId,
-                }
-            }).done(function(result) {
-                if(result) {
-                    event.target.parentElement.parentElement.remove();
-                    $('#md-total-order').html(result.totalTransaction + ' đ');
-                    $('#total-transaction-'+transactionId).html(result.totalTransaction + ' đ');
-                    Toast.fire({
-                        icon: 'success',
-                        title: result.message,
-                        position: 'top-end'
-                    })
-                }
-            });
+        function numberWithCommas(x) {
+            let res = x.value.replace(/[. ]+/g, "").trim();
+            let num = res.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            x.value = num;
         }
+
     </script>
 @endsection
 

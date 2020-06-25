@@ -51,7 +51,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/'. $user->avatar) }}" width="70px" alt="">
+                                    <img src="{{ isset($user->google_id) ? asset($user->avatar) : asset('storage/'. $user->avatar) }}" width="70px" alt="">
                                 </td>
                                 <td>
                                     <li><strong>Email :</strong> {{ $user->email }}</li>

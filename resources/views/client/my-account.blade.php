@@ -25,7 +25,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                             <div class="single-info">
-                                                <p class="user-name">Hello <span>John Doe</span> <br>(not John Doe? <a class="log-out" href="login.html">Log Out</a>)</p>
+                                                <p class="user-name">Hello <span>{{ Auth::user()->name }}</span> <br>(not {{ Auth::user()->name }}? <a class="log-out" href="login.html">Log Out</a>)</p>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
                                             <div class="single-info justify-content-lg-center">
-                                                <a class="btn btn-secondary" href="cart.html">View Cart</a>
+                                                <a class="btn btn-secondary" href="{{ route('get.list.cart') }}">View Cart</a>
                                             </div>
                                         </div>
                                     </div> <!-- end of row -->
@@ -55,7 +55,7 @@
                                                 <li><a class="nav-link" data-toggle="tab" href="#downloads">Downloads</a></li>
                                                 <li><a class="nav-link" data-toggle="tab" href="#address">Addresses</a></li>
                                                 <li><a class="nav-link" data-toggle="tab" href="#account-details">Account details</a></li>
-                                                <li><a class="nav-link" href="login.html">logout</a></li>
+                                                <li><a class="nav-link" href="{{ route('get.logout') }}">logout</a></li>
                                             </ul> <!-- end of dashboard-list -->
                                         </div>
 
@@ -72,29 +72,44 @@
                                                     <div class="table-responsive">
                                                         <table class="table">
                                                             <thead>
-                                                            <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Total</th>
-                                                                <th>Actions</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th>Mã đơn</th>
+                                                                    <th width="30%">Thông tin</th>
+                                                                    <th>Tổng tiền</th>
+                                                                    <th>Trạng thái</th>
+                                                                    <th width="12%">Ngày đặt</th>
+                                                                    <th>Thao tác</th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>September 10, 2018</td>
-                                                                <td>Processing</td>
-                                                                <td>$25.00 for 1 item </td>
-                                                                <td><a class="btn btn-secondary" href="cart.html">view</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>October 4, 2018</td>
-                                                                <td>Processing</td>
-                                                                <td>$17.00 for 1 item </td>
-                                                                <td><a class="btn btn-secondary" href="cart.html">view</a></td>
-                                                            </tr>
+                                                                @if(isset($userTransaction))
+                                                                    @foreach($userTransaction as $userTr)
+                                                                    <tr>
+                                                                        <td>DH{{ $userTr->id }}</td>
+                                                                        <td>
+                                                                            <ul>
+                                                                                <li>SĐT: {{ $userTr->phone }}</li>
+                                                                                <li>Địa chỉ: {{ $userTr->adress }}</li>
+                                                                            </ul>
+                                                                        </td>
+                                                                        <td id="total-transaction-{{$userTr->id}}">{{ number_format($userTr->total,0,',','.') }}đ</td>
+                                                                        <td>
+                                                                            <span class="badge {{ $userTr->getStatus($userTr->status)['class'] }}">
+                                                                                {{ $userTr->getStatus($userTr->status)['name'] }}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            {{ $userTr->created_at }}
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="btn btn-secondary" onclick="viewOrder(event)" data-status="{{ $userTr->status }}"  href="#" data-id="{{ $userTr->id }}" data-total='{{number_format($userTr->total,0,',','.')}}' data-toggle="modal" data-target="#modal-lg" >view</a>
+                                                                            @if($userTr->status === 0)
+                                                                            <a class="btn btn-secondary js-cancel-transaction" href="{{ route('cancel.transaction',$userTr->id) }}">hủy</a>
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -243,4 +258,67 @@
         </div>
         <!-- End of My Account Wrapper -->
     </div>
+    <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Chi tiết đơn hàng # <b class="transaction-id"></b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="md-content">
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    <p>Thành tiền: <span id="md-total-order"></span></p>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+@stop
+
+@section('js')
+    <script type="text/javascript">
+        $('.js-cancel-transaction').click(function (event) {
+            event.preventDefault();
+            let tr = event.target.parentElement.parentElement;
+            url = $(this).attr('href');
+            $.ajax({
+                url: url,
+                type:'POST',
+                data: {
+                    _token : '{{ csrf_token() }}',
+                }
+            }).done(function(result) {
+                if(result){
+                    tr.innerHTML = result.html;
+                }
+            });
+        })
+
+        function viewOrder(event) {
+            event.preventDefault();
+            let id = event.target.getAttribute('data-id');
+            let total = event.target.getAttribute('data-total');
+            let status = event.target.getAttribute('data-status');
+            $('.transaction-id').text(id);
+            $.ajax({
+                url: '{{ route('post.view.order') }}',
+                type:'POST',
+                data: {
+                    _token : '{{ csrf_token() }}',
+                    id : id,
+                    status : status
+                }
+            }).done(function(result) {
+                if(result) {
+                    $('#md-content').html(result);
+                    $('#md-total-order').html(total+' đ');
+                }
+            });
+        }
+    </script>
 @stop
